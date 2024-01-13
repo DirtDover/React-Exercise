@@ -1,4 +1,5 @@
-import loader from "./assets/loader.svg"
+import loader from "./assets/loader.svg";
+import browser from "./assets/browser.svg"
 import { useEffect, useState } from "react";
 import "./App.css"
 const APIKEY = "46e35c2d-9f61-4784-9a6d-a399c560ae20"
@@ -6,12 +7,14 @@ const APIKEY = "46e35c2d-9f61-4784-9a6d-a399c560ae20"
 function App() {
  
   const [weatherData, setWeatherData] = useState(null)
+  const [errorInfo, setErrorInfo] = useState(null)
 
 useEffect(() => {
 
   fetch(`http://api.airvisual.com/v2/nearest_city?key=${APIKEY}`)
   .then(response => {
     console.log(response);
+    if(!response.ok) throw new Error (`Error ${response.status}, ${response.statusText}`)
     return response.json()
   })
   .then(responseData => {
@@ -22,7 +25,12 @@ useEffect(() => {
       iconID: responseData.data.current.weather.ic,
       temperature: responseData.data.current.weather.tp,
     })
-  } )
+  })
+  .catch(err => {
+    console.log(err);
+    console.dir(err);
+    setErrorInfo(err.message)
+  })
 
 },[])
 
@@ -31,7 +39,7 @@ useEffect(() => {
 
   return (
       <main>
-        <div className={`loader-container ${!weatherData && "active"}`}>
+        <div className={`loader-container ${(!weatherData && !errorInfo) && "active"}`}>
           <img src={loader} alt="loading icon" />
         </div>
         
@@ -45,6 +53,14 @@ useEffect(() => {
           </div>
           </>
         )}
+
+          {(errorInfo && !weatherData) && (
+            <>
+              <p className="error-information">{errorInfo}</p>
+              <img src={browser} alt="error icon" />
+            </>
+          )}
+
       </main>
   
   );
