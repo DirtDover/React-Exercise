@@ -8,7 +8,7 @@ function App() {
 useEffect(() => {
 
 
-  fetch ("https://restcountries.com/v3.1/region/europe")
+  fetch ("https://restcountries.com/v3.1/region/europe")    
   .then(data => data.json())
   .then(data => {
     console.log(data)
@@ -35,7 +35,7 @@ useEffect(() => {
         <p className="text-gray-100 text-xl mb-8">Click on a card to reveal a country's informations.</p>
         {countries && (
           <ul className="grid min-[450px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 auto-rows-[200px]">
-          {countries.map((country, index) => (
+          {countries.map((country, index) => (                    /* on map les resultats. Pour chaque entré dans le tableau on crée une ListCard en lui passant en props les infos ( country et key) */
             <ListCard key={index} country={country}  />
           ))}
           </ul>
