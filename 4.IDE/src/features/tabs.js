@@ -2,6 +2,7 @@ import{ createSlice } from "@reduxjs/toolkit"
 import {html, css, js} from "../assets/index"
 
 
+
 const initialState = [
     {
         id: 1,
@@ -11,7 +12,7 @@ const initialState = [
         code:`<div>
         <h1>Editeur de code avec React </h1>
         <p>Codez directement sur votre navigateur</p>
-        </div>
+</div>
         ` 
     },
     {
@@ -37,3 +38,15 @@ const initialState = [
     },
 ]
 
+export const codeUpdater = createSlice({
+    name: "code-updater",
+    initialState,
+    reducers: {
+        updateCode: (state,action) => {
+            state.find(obj => obj.id === action.payload.id).code = action.payload.value
+        }
+    }
+})
+
+export const {updateCode} = codeUpdater.actions
+export default codeUpdater.reducer
