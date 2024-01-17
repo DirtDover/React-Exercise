@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import CodeTabs from './CodeTabs'
 import ButtonTab from './ButtonTab';
+import Preview from './Preview';
 import { useState } from 'react';
 
 export default function Tabs() {
@@ -29,6 +30,7 @@ export default function Tabs() {
             code={tabs.find(obj => obj.id === tabIndex).code}
 
             />
+            <Preview />
         </div>
     </div>
   )

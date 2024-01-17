@@ -1,7 +1,9 @@
 import React from 'react'
 
+
 export default function ButtonTab({id, toggleTab, buttonContent, imgURL}) {
-  return (
+  
+    return (
     <button 
     onClick={()=>toggleTab(id)}
     className='flex items-center px-5 py-5 hover:bg-slate-600 focus:bg-slate-600 outline-none'>
