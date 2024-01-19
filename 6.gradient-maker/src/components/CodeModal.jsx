@@ -6,8 +6,26 @@ import getGradientCSSValue from '../utils/getGradientCSSValue'
 export default function CodeModal({closeModal}) {
     const gradientValues = useSelector(state => state.gradient)
   
-  
-    return (
+    let runningAnimation = false
+  function handleCopy(e) {
+    if(!runningAnimation) {
+        runningAnimation = true
+        e.target.textContent = "Copied !"
+        navigator.clipboard.writeText(`background-image : ${getGradientCSSValue(gradientValues)}`)
+        setTimeout(()=> {
+            e.target.textContent = "Copy"
+            runningAnimation = false
+        }, 500)
+    }
+  }
+
+  useEffect(() => {
+    document.body.style.overflowY = "hidden"
+
+    return () => document.body.style.overflowY = "visible"
+  }, [])
+    
+  return (
     <div 
     onClick={closeModal}
     className='fixed z-10 top-0 left-0 w-full h-full bg-gray-800/95 flex justify-center items-center'>
@@ -17,7 +35,7 @@ export default function CodeModal({closeModal}) {
             className="flex items-center mb-5">
                 <p className='font-semibold text-gray-950 mr-6'>Here is your code 🎉 </p>
                 <button 
-                
+                onClick={handleCopy}
                 className="ml-auto mr-2 text-sm bg-blue-600 text-white hover:bg-blue-700 py-1 px-3 rounded">
                     Copy
                 </button>
@@ -27,7 +45,7 @@ export default function CodeModal({closeModal}) {
                     Close
                 </button>
             </div>
-            <p className="rounded bg-gray-900 text-gray-200 font-semibold">
+            <p className="rounded bg-gray-900 text-gray-200 font-semibold p-5">
                 {`background-image : ${getGradientCSSValue(gradientValues)}`}
             </p>
         </div>
