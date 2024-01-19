@@ -5,6 +5,7 @@ import AddRemoveColor from "./components/AddRemoveColor.jsx";
 import RangeAngle from "./components/inputs/RangeAngle.jsx";
 import SelectColor from "./components/inputs/SelectColor.jsx";
 import RangeColorPosition from "./components/inputs/RangeColorPosition.jsx";
+import OpenModalBtn from "./components/OpenModalBtn.jsx";
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
   <p className="">Gradient's global angle</p>
   <RangeAngle />
 
-  {/* OpenModalBtn */}
+    <OpenModalBtn />
     </div>
     <Gradient />
   </div>
