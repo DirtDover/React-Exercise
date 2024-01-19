@@ -3,6 +3,8 @@ import { useSelector } from "react-redux"
 import ColorInputs from "./components/inputs/ColorInputs";
 import AddRemoveColor from "./components/AddRemoveColor.jsx";
 import RangeAngle from "./components/inputs/RangeAngle.jsx";
+import SelectColor from "./components/inputs/SelectColor.jsx";
+import RangeColorPosition from "./components/inputs/RangeColorPosition.jsx";
 
 
 function App() {
@@ -29,10 +31,10 @@ function App() {
     </div>
   
   <p className="">Pick end change a Color's position</p>
-  {/*Select Color */}
+  <SelectColor />
 
   <p className="">Color's Position</p>
-  {/*Range Color */}
+  <RangeColorPosition />
 
   <p className="">Gradient's global angle</p>
   <RangeAngle />

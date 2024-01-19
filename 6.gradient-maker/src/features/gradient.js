@@ -31,7 +31,7 @@ export const gradientSlice = createSlice({
         state.colors.push({
             id: state.colors[state.colors.length - 1].id + 1,
             value: "#111111",
-            position: 50
+            position: state.colors[state.colors.length - 1].position + 0.1 * state.colors[state.colors.length - 1].position
         })
     },
     removeColor: (state, action) => {
@@ -41,9 +41,15 @@ export const gradientSlice = createSlice({
     },
     updateAngle: (state, action) => {
         state.angle = action.payload
+    },
+    pickColor: (state, action) => {
+        state.pickedColorId = action.payload 
+    },
+    updateColorPosition: (state, action) => {
+        state.colors.find(color => color.id === state.pickedColorId).position = action.payload
     }
   }  
 })
 
-export const {updateColorValue, addColor, removeColor, updateAngle} = gradientSlice.actions
+export const {updateColorValue, addColor, removeColor, updateAngle, pickColor, updateColorPosition} = gradientSlice.actions
 export default gradientSlice.reducer
