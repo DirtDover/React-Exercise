@@ -10,7 +10,8 @@ export default function Player() {
  
     return (
         <audio
-        controls
+        className="outline-none"
+        id="audio-player"
         src={playlist.songs?.find(obj => obj.id === playlist.currentMusicID).url}
         ref={audioRef}
         ></audio>

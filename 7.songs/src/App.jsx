@@ -1,5 +1,6 @@
 import Player from "./components/Player"
 import Playlist from "./components/Playlist"
+import PlayerPannel from "./layouts/Player/PlayerPannel"
 
 function App() {
   return <>
@@ -11,7 +12,7 @@ function App() {
         <Playlist />
       </div>
     </div>
-    {/* PlayerPannel */}
+    <PlayerPannel />
   </>
 }
 
