@@ -17,6 +17,25 @@ export const playlist = createSlice({
           toggleLecture: (state, action) => {
             state.play = !state.play
           },
+          nextSong: (state, action) => {
+           if(action.payload === state.songs.length) {
+            state.currentMusicID = state.songs[0].id
+           }
+           else {
+            state.currentMusicID = state.songs[action.payload].id
+           }
+          },
+          previousSong: (state, action) => {
+            if(action.payload  < 0) {
+             state.currentMusicID = state.songs[state.songs.length -1].id
+            }
+            else {
+             state.currentMusicID = state.songs[action.payload].id
+            }
+           },
+           changeSong: (state, action) => {
+            state.currentMusicID = action.payload
+           }
 
     }
 })
@@ -31,6 +50,9 @@ export function getMusicsData(action) {
 
 export const {
   addBaseSongs,
-  toggleLecture
+  toggleLecture,
+  nextSong,
+  previousSong,
+  changeSong
 } = playlist.actions
 export default playlist.reducer
