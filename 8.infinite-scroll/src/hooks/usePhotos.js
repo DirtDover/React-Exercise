@@ -14,7 +14,11 @@ export default function usePhotos(querySearch, pageIndex) {
 
         fetch(`https://api.unsplash.com/search/photos?page=${pageIndex}&per_page=30&query=${querySearch}&client_id=${import.meta.env.VITE_UNSPLASH_KEY}`)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            setPhotos(data.results)
+            setMaxPages(data.total_pages)
+            setLoading(false)
+        })
 
     }, [querySearch, pageIndex])
     
