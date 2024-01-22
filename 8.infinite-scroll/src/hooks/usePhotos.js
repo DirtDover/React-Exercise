@@ -22,10 +22,19 @@ export default function usePhotos(querySearch, pageIndex) {
         setLoading(true)
 
         fetch(`https://api.unsplash.com/search/photos?page=${pageIndex}&per_page=30&query=${querySearch}&client_id=${import.meta.env.VITE_UNSPLASH_KEY}`)
-        .then(response => response.json())
+        .then(response => {
+            if(!response.ok) throw new Error(`${response.status} Error, something went wrong`)
+            return  response.json()} )
         .then(data => {
             setPhotos(state => [...state, ...data.results])
             setMaxPages(data.total_pages)
+            setLoading(false)
+        })
+        .catch(err => {
+            setError({
+                msg: err.message,
+                state: true
+            })
             setLoading(false)
         })
 

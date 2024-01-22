@@ -48,6 +48,14 @@ export default function List() {
             className='block w-full mb-14 text-slate-800 py-3 px-2 text-md outline-gray-500 rounded border border-slate-400'
             type="text" />
        </form>
+       {/*Message d'erreur */}
+       {photosApiData.error.state && <p>{photosApiData.error.msg}</p>}
+       
+       {/* Pas d'erreur mais pas de résultats */}
+       {photosApiData.photos.length === 0 &&
+       !photosApiData.error.state && 
+       !photosApiData.loading && <p>No image available for this query</p>}
+       
        <ul className="grid grid-cols-[repeat(auto-fill,minmax(250px,_1fr))] auto-rows-[175px] gap-4 justify-center">
         {!photosApiData.loader && photosApiData.photos.length !== 0 && photosApiData.photos.map((photo, index) => {
             if(photosApiData.photos.length === index + 1) {
@@ -73,6 +81,9 @@ export default function List() {
        </ul>
     {/*Loader */}
     {(photosApiData.loading && !photosApiData.error.state) && <img className='block mx-auto' src={spinner}/>}
+    
+    {/* Dernière images */}
+    {photosApiData.maxPages === pageNumber && <p className='mt-10 mb-20'> No more images to show for that query !</p>}
     </>
   )
 }
