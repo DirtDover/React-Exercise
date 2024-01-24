@@ -1,5 +1,6 @@
 import React from 'react'
 import {useSelector} from "react-redux"
+import { Link } from 'react-router-dom'
 
 export default function SideNotes() {
     const notes = useSelector(state => state.notes)
@@ -11,9 +12,14 @@ export default function SideNotes() {
         </p>
         <ul className="w-full divide-y divide-slate-300">
             {notes.list && notes.list.map(note => (
-                <li key={note.id} className=" relative p-4 hover:bg-slate-200 cursor-pointer">
-                   <p className="text-xl text-slate-900"> {note.title}</p> 
-                   <p className="text-xl text-slate-800"> {note.subtitle}</p> 
+                <li key={note.id} className=" relative hover:bg-slate-200 cursor-pointer">
+                   <Link 
+                   className='block p-4 w-full h-full'
+                   to={`/note/${note.id}`}
+                   >
+                   <span className=" block text-xl text-slate-900"> {note.title}</span> 
+                   <span className="block text-xl text-slate-800"> {note.subtitle}</span> 
+                   </Link>
                 </li>
             ))}
         </ul>
