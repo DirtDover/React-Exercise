@@ -14,10 +14,15 @@ function App() {
   
   
   
-  return <>
-
-    <NotesList />
-  </>
+  return (
+    <div className="flex bg-slate-800 min-h-screen">
+    
+      <NotesList />
+    
+    </div>
+  )
+    
+  
 }
 
 export default App
