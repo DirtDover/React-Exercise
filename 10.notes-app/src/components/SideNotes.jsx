@@ -11,7 +11,7 @@ export default function SideNotes() {
         </p>
         <ul className="w-full divide-y divide-slate-300">
             {notes.list && notes.list.map(note => (
-                <li className=" relative p-4 hover:bg-slate-200 cursor-pointer">
+                <li key={note.id} className=" relative p-4 hover:bg-slate-200 cursor-pointer">
                    <p className="text-xl text-slate-900"> {note.title}</p> 
                    <p className="text-xl text-slate-800"> {note.subtitle}</p> 
                 </li>
